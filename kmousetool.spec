@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kmousetool
-Version  : 18.12.2
-Release  : 4
-URL      : https://download.kde.org/stable/applications/18.12.2/src/kmousetool-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/kmousetool-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/kmousetool-18.12.2.tar.xz.sig
+Version  : 18.12.3
+Release  : 5
+URL      : https://download.kde.org/stable/applications/18.12.3/src/kmousetool-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/kmousetool-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/kmousetool-18.12.3.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -33,7 +33,6 @@ Summary: bin components for the kmousetool package.
 Group: Binaries
 Requires: kmousetool-data = %{version}-%{release}
 Requires: kmousetool-license = %{version}-%{release}
-Requires: kmousetool-man = %{version}-%{release}
 
 %description bin
 bin components for the kmousetool package.
@@ -81,22 +80,23 @@ man components for the kmousetool package.
 
 
 %prep
-%setup -q -n kmousetool-18.12.2
+%setup -q -n kmousetool-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549888150
+export SOURCE_DATE_EPOCH=1552002394
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549888150
+export SOURCE_DATE_EPOCH=1552002394
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmousetool
 cp COPYING %{buildroot}/usr/share/package-licenses/kmousetool/COPYING
