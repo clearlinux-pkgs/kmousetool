@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmousetool
-Version  : 21.04.2
-Release  : 30
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/kmousetool-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/kmousetool-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/kmousetool-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 31
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/kmousetool-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/kmousetool-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/kmousetool-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0
+License  : BSD-3-Clause GFDL-1.2 GPL-2.0
 Requires: kmousetool-bin = %{version}-%{release}
 Requires: kmousetool-data = %{version}-%{release}
 Requires: kmousetool-license = %{version}-%{release}
@@ -80,35 +80,36 @@ man components for the kmousetool package.
 
 
 %prep
-%setup -q -n kmousetool-21.04.2
-cd %{_builddir}/kmousetool-21.04.2
+%setup -q -n kmousetool-21.08.1
+cd %{_builddir}/kmousetool-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623393453
+export SOURCE_DATE_EPOCH=1630900929
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623393453
+export SOURCE_DATE_EPOCH=1630900929
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmousetool
-cp %{_builddir}/kmousetool-21.04.2/COPYING %{buildroot}/usr/share/package-licenses/kmousetool/133efad5329acf364135c569ac01ec084c3d4647
-cp %{_builddir}/kmousetool-21.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmousetool/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/kmousetool-21.08.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmousetool/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/kmousetool-21.08.1/COPYING %{buildroot}/usr/share/package-licenses/kmousetool/133efad5329acf364135c569ac01ec084c3d4647
+cp %{_builddir}/kmousetool-21.08.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/kmousetool/1bd373e4851a93027ba70064bd7dbdc6827147e1
 pushd clr-build
 %make_install
 popd
@@ -164,6 +165,7 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/kmousetool/133efad5329acf364135c569ac01ec084c3d4647
 /usr/share/package-licenses/kmousetool/1bd373e4851a93027ba70064bd7dbdc6827147e1
+/usr/share/package-licenses/kmousetool/29fb05b49e12a380545499938c4879440bd8851e
 
 %files man
 %defattr(0644,root,root,0755)
