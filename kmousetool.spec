@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kmousetool
-Version  : 22.04.0
-Release  : 39
-URL      : https://download.kde.org/stable/release-service/22.04.0/src/kmousetool-22.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.04.0/src/kmousetool-22.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.04.0/src/kmousetool-22.04.0.tar.xz.sig
+Version  : 22.04.1
+Release  : 40
+URL      : https://download.kde.org/stable/release-service/22.04.1/src/kmousetool-22.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.1/src/kmousetool-22.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.1/src/kmousetool-22.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0
@@ -81,15 +81,15 @@ man components for the kmousetool package.
 
 
 %prep
-%setup -q -n kmousetool-22.04.0
-cd %{_builddir}/kmousetool-22.04.0
+%setup -q -n kmousetool-22.04.1
+cd %{_builddir}/kmousetool-22.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650668454
+export SOURCE_DATE_EPOCH=1652645840
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -105,12 +105,12 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1650668454
+export SOURCE_DATE_EPOCH=1652645840
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kmousetool
-cp %{_builddir}/kmousetool-22.04.0/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmousetool/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/kmousetool-22.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmousetool/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
-cp %{_builddir}/kmousetool-22.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmousetool/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/kmousetool-22.04.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kmousetool/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/kmousetool-22.04.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kmousetool/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
+cp %{_builddir}/kmousetool-22.04.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kmousetool/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 pushd clr-build
 %make_install
 popd
